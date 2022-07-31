@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0; }
+
+ul {
+  list-style-type: none; }
+
+.footerFlex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 5rem; }
+
+.galeriaFotos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5px; }

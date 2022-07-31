@@ -1,0 +1,16 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+@import './header';
+@import './footer';
+
+
+.galeriaFotos{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5px;
+}
+
+
