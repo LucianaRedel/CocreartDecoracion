@@ -342,6 +342,17 @@ return usuarios;
 
 baseUsuarios();
 
+// Registro de nuevo usuario no funciona
+
+let usuarios = [];
+
+function Registrar(){
+    let nuevoUsuario = new Usuario(nombreIngreso.value, apellidoIngreso.value, claveDeIngreso.value);
+    usuarios.push(nuevoUsuario)
+}
+
+
+// Registro de nuevo usuario no funciona
 
 let nombreIngresado;
 let apellidoIngresado;
@@ -406,6 +417,16 @@ productos.push(new Producto(8, 'Caja de té', 1200, 1, 'Entrega en 48 hs'));
 for (const Producto of productos) {
     Producto.sumarIvayEnvio()
 }
+
+
+// Seleccionar items para la compra, 
+
+// ` comillas invertidas para concatenar string, sin usar el + 
+
+
+
+
+
 
 
 

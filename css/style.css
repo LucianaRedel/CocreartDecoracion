@@ -38,6 +38,12 @@ ul {
 .productos {
   padding: 100px; }
 
+.detalleProductos {
+  padding: 100px; }
+
+.cantidad {
+  width: 100px; }
+
 .galeriaFotos {
   display: flex;
   flex-wrap: wrap;

@@ -93,7 +93,7 @@
             </div>
             <div class="input-group">
                 <span class="input-group-text">Contraseña </span>
-                <input type="text" aria-label="Contraseña" class="form-control" id="claveDeIngreso" name="">
+                <input type="password" aria-label="Contraseña" class="form-control" id="claveDeIngreso" name="">
             </div>
             <div id="mensajeIngresoError">
                 <p></p>
@@ -103,10 +103,21 @@
             </div>
             <div class="boton">
                 <button type="button" class="btn btn-primary btn-lg" onclick="Ingresar()">Ingresar</button>
+                <button type="button" class="btn btn-primary btn-lg" onclick="Registrar()">Registrar nuevo
+                    usuario</button>
             </div>
         </section>
         <section class="comprar" id="mensaje">
             <p></p>
+        </section>
+
+        <section class="detalleProductos">
+            <div>
+                <h3>
+                    <strong> Seleccione el o los ítems para agregar a su compra</strong>
+                </h3>
+            </div>
+
         </section>
 
         <section class="productos">
@@ -120,9 +131,35 @@
                     </h2>
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne"
                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                            demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion
-                            body.</div>
+                        <div class="accordion-body">Flores de tela, de tusor, arpillera o lienzo. Distintos tamaños,
+                            pequeños, ideales para difusores ambientales; medianos, para frascos y grandes, para
+                            floreros
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                value="flores">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Seleccionar
+                            </label>
+                        </div>
+                        <div class="cantidad">
+                            <input type="number" aria-label="Cantidad" class="form-control" id="id1" value=" " min="0"
+                                pattern="^[0-9]+">
+                        </div>
+                        <div>
+                            <img src="./img/floresdecoracion.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="floresdecoracion">
+                            <img src="./img/floresdecoracion1.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="floresdecoracion">
+                            <img src="./img/floresdecoracion2.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="floresdecoracion">
+                            <img src="./img/floresdecoracion3.jpeg" class="rounded float-end" width="200px"
+                                height="200px" alt="floresdecoracion">
+                            <img src="./img/floresdecoracion4.jpeg" class="rounded float-end" width="200px"
+                                height="200px" alt="floresdecoracion">
+                            <img src="./img/flores.jpeg" class="rounded float-end" width="200px" height="200px"
+                                alt="floresdecoracion">
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -134,11 +171,34 @@
                     </h2>
                     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo"
                         data-bs-parent="#accordionFlushExample">
-                        <div class="accordion-body">Placeholder content for this accordion, which is intended to
-                            demonstrate
-                            the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's
-                            imagine
-                            this being filled with some actual content.</div>
+                        <div class="accordion-body">Porta velas con hermosos y variados motivos, ideales para regalar a
+                            nuestros seres queridos (incluyen la vela!)
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                                value="flores">
+                            <label class="form-check-label" for="flexRadioDefault1">
+                                Seleccionar
+                            </label>
+                        </div>
+                        <div class="cantidad">
+                            <input type="number" aria-label="Cantidad" class="form-control" id="id2" value=" " min="0"
+                                pattern="^[0-9]+">
+                        </div>
+                        <div>
+                            <img src="./img/portavelas1.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="portavelas">
+                            <img src="./img/portavelas2.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="portavelas">
+                            <img src="./img/portavelas3.jpeg" class="rounded float-start" width="200px"
+                                height="200px" alt="portavelas">
+                            <img src="./img/portavelas4.jpeg" class="rounded float-end" width="200px"
+                                height="200px" alt="portavelas">
+                            <img src="./img/portavelas5.jpeg" class="rounded float-end" width="200px"
+                                height="200px" alt="portavelas">
+                            <img src="./img/portavelas6.jpeg" class="rounded float-end" width="200px" height="200px"
+                                alt="portavelas">
+                        </div>
                     </div>
                 </div>
                 <div class="accordion-item">
@@ -262,9 +322,10 @@
                     </div>
                 </div>
             </div>
-
-
-
+            <div>
+                <button type="button" class="btn btn-primary btn-lg" onclick="Comprar()">Agregar productos y finalizar
+                    la compra</button>
+            </div>
         </section>
 
 
