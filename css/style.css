@@ -24,6 +24,20 @@ ul {
   padding-top: 5rem;
   font-family: 'Cookie', cursive; }
 
+.comprar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100px;
+  width: 50vw; }
+  .comprar .boton {
+    padding: 30px; }
+  .comprar .input-group {
+    padding: 10px; }
+
+.productos {
+  padding: 100px; }
+
 .galeriaFotos {
   display: flex;
   flex-wrap: wrap;

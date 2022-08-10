@@ -175,10 +175,11 @@ for (let index = 0; index < 8; index ++){
         console.log('Error en ingreso');
     }
 }
-*/
+
 // Prueba y correccion para que el stock no sea negativo
 
 // Bienvenida a la pagina
+
 
 
 function bienvenida() {
@@ -311,3 +312,103 @@ mostrarTotalCompra();
 // Saludo de despedida de la pagina, 
 
 alert('Gracias por visitar nuestra página' + ' ' + this.nombreCompleto());
+
+*/
+// Incorporacion y modificaciones clase DOM
+
+
+
+
+class Usuario{
+    constructor(nombre, apellido, contraseña){
+        this.nombre=nombre.toLowerCase();
+        this.apellido=apellido.toLowerCase();
+        this.contraseña=contraseña.toLowerCase();
+    }  
+}
+
+function baseUsuarios(){
+
+const usuarios=[];
+
+usuarios.push(new Usuario('Andres','Santos','autos'));
+usuarios.push(new Usuario('Carolina','Bustamante','venezuela'));
+usuarios.push(new Usuario('Mariana','Quiroga','tortas'));
+usuarios.push(new Usuario('Laura','Escobar','calle corrientes'));
+
+return usuarios;
+
+}
+
+baseUsuarios();
+
+
+let nombreIngresado;
+let apellidoIngresado;
+let contraseñaIngresado; 
+
+
+function Ingresar(){
+    nombreIngresado=document.getElementById('nombreIngreso').value;
+    apellidoIngresado=document.getElementById('apellidoIngreso').value;
+    contraseñaIngresado=document.getElementById('claveDeIngreso').value;
+
+    let listadoDeUsuarios=baseUsuarios();
+
+    let usuarioIngresado=listadoDeUsuarios.find(((usuario)=>usuario.nombre==nombreIngresado) && ((usuario)=>usuario.apellido==apellidoIngresado));
+    if(usuarioIngresado)
+    {
+        if(usuarioIngresado.contraseña==contraseñaIngresado)
+        {
+            document.querySelector('#seccionComprar').style.display='none';
+            mensaje.innerHTML='Bienvenido a CocreArt' + ' ' + nombreIngresado + ' ' + apellidoIngresado;
+        }
+        else{
+            mensajeIngresoError.innerHTML=`Por favor reingrese los datos correctos para ingresar a la pagina`;
+        }
+    }
+    else{
+        mensajeIngreso.innerHTML=`No existe el usuario`;
+    }
+}
+
+
+// Construccion de productos
+
+class Producto {
+    constructor(id, nombre, precio, stock, disponibilidad) {
+        this.id = id;
+        this.nombre = nombre.toLowerCase();
+        this.precio = parseInt(precio);
+        this.stock = parseInt(stock);
+        this.disponibilidad = disponibilidad.toLowerCase();
+    }
+    sumarIvayEnvio() {
+        this.precio = Math.round(this.precio * 1.21 * 1.20);
+    }
+}
+
+// Creo los items de la pagina con los datos necesarios para la venta 
+
+const productos = [];
+
+productos.push(new Producto(1, 'Flores para decoración', 500, 10, 'Entrega inmediata'));
+productos.push(new Producto(2, 'Porta velas', 800, 5, 'Entrega inmediata'));
+productos.push(new Producto(3, 'Frascos decorados', 250, 8, 'Entrega en 24 hs'));
+productos.push(new Producto(4, 'Bandeja', 650, 2, 'Entrega inmediata'));
+productos.push(new Producto(5, 'Jabones decorados', 100, 25, 'Entrega inmediata'));
+productos.push(new Producto(6, 'Caja con dos frascos decorados', 900, 18, 'Entrega inmediata'));
+productos.push(new Producto(7, 'Cajoncito de guardado', 700, 15, 'Entrega en 36 hs'));
+productos.push(new Producto(8, 'Caja de té', 1200, 1, 'Entrega en 48 hs'));
+
+// Sumar el IVA y el costo de envio 
+
+for (const Producto of productos) {
+    Producto.sumarIvayEnvio()
+}
+
+
+
+
+
+
