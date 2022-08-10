@@ -424,6 +424,84 @@ for (const Producto of productos) {
 // ` comillas invertidas para concatenar string, sin usar el + 
 
 
+function Comprar(){
+
+    let compra = [];
+
+
+    const listadoDeProductos = () => {
+        let mensaje = 'Seleccione el o los ítems para agregar a su compra'
+        productos.forEach(item => {
+            mensaje += `
+                Opción ${item.id}, ${item.nombre}, Stock ${item.stock}, Precio final $ ${item.precio}, Disponibilidad ${item.disponibilidad}
+            `
+        })
+        mensaje += `
+                Opción 0: Salir sin selección de ítems o Finalizar la compra
+            `
+        let opcion = Number(prompt(mensaje))
+        return opcion;
+    
+    }
+    
+    
+    let comprar = true;
+    
+    while (comprar) {
+        let opcion = listadoDeProductos()
+        if (opcion >= 1 && opcion <= 8) {
+            let productoElegido = productos.find(item => item.id === opcion)
+            if (compra.length === 0) {
+                productoElegido.cantidad = 1;
+                productoElegido.stock--;
+                compra.push(productoElegido);
+    
+            } else {
+                let productoComprado = compra.find(item => item.id === opcion)
+                if (productoComprado) {
+                    if(productoComprado.stock === 0){
+                        alert ('No hay stock disponible')
+                    }
+                    else{
+                        productoComprado.cantidad++;
+                        productoComprado.stock--;
+                    }
+                   
+                } else {
+                    productoElegido.cantidad = 1;
+                    productoElegido.stock--;
+                    compra.push(productoElegido);
+                }
+            }
+        } else {
+            comprar = false;
+        }
+    
+    }
+    
+    const mostrarTotalCompra = () => {
+        let mensajeCompra = "";
+        if (compra.length > 0) {
+            compra.forEach(item => {
+                mensajeCompra += `
+                Producto ${item.nombre}, Cantidad ${item.cantidad}, Subtotal producto $ ${item.precio * item.cantidad}
+                `
+            })
+            mensajeCompra += `
+                Total compra $ ${compra.reduce ((total, item) => total + (item.precio * item.cantidad),0)}
+                `
+            alert(mensajeCompra)
+        } else {
+            mensajeCompra += 'No hay ítems seleccionados'
+            alert(mensajeCompra)
+        }
+    }
+    
+    mostrarTotalCompra();
+
+
+
+}
 
 
 
