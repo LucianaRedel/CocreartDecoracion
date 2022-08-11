@@ -42,7 +42,40 @@ ul {
   padding: 100px; }
 
 .cantidad {
-  width: 100px; }
+  width: 100px;
+  padding: 20px; }
+
+.input-group-text {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large;
+  justify-self: center; }
+
+.btn {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large;
+  background-color: lightpink;
+  color: black; }
+
+.accordion-item {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large; }
+
+.accordion-button {
+  font-size: xx-large; }
+
+#mensajeIngresoError {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large;
+  color: red; }
+
+#mensajeIngreso {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large;
+  color: red; }
+
+#mensaje {
+  font-family: 'Cookie', cursive;
+  font-size: xx-large; }
 
 .galeriaFotos {
   display: flex;
@@ -65,3 +98,9 @@ img:hover {
   display: grid;
   justify-items: center;
   padding-top: 80px; }
+
+.titulo {
+  display: grid;
+  justify-items: center;
+  font-size: 60px;
+  font-family: 'Nanum Brush Script', cursive; }
