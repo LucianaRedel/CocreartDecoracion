@@ -4,7 +4,8 @@
     flex-direction: column;
     align-items: center;
     padding: 100px;
-    width: 50vw;
+    padding-bottom: 0%;
+    width: 80vw;
     .boton{
         padding: 30px;
     }   
@@ -65,5 +66,11 @@
 #mensaje{
     font-family: 'Cookie', cursive;
     font-size: xx-large;
+}
+
+.imagenFlex {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 

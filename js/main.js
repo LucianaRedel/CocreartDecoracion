@@ -45,13 +45,34 @@ let botonSeleccionar1 = document.getElementById('flush-collapseOne')
 botonSeleccionar1.addEventListener('mousemove', Seleccionar1)
 
 function Seleccionar1(){ 
+    let productosStock; 
+    productos.forEach(item =>{
+         productosStock = item.nombre
+    })
+    let nombreProd = document.getElementById('opcion1').value;
+    if(productosStock.includes(nombreProd)){
+        console.log('item encontrado');
+    }
+    else {
+        console.log('item no encontrado');
+    }
+    //let opcion=document.getElementById('opcion1').value
+   // productos.find((item) => { if(item.nombre === opcion) {
+     // return item.id;
    
-    precio1.innerHTML= `Precio x`
-    stock1.innerHTML= `Stock x`
-    entrega1.innerHTML=`Condición x`
-         
+    //} 
+   // else{
+      // alert('error')
+    //}
+//})
+        
 }
 
+//precio1.innerHTML= `Precio $ x`
+//stock1.innerHTML= `Stock x`
+//entrega1.innerHTML=`Condición x`
+
+/*
 let botonSeleccionar2 = document.getElementById('flush-collapseTwo')
 botonSeleccionar2.addEventListener('mousemove', Seleccionar2)
 
@@ -129,12 +150,45 @@ function Seleccionar8(){
 
 }
 
+*/
+
+// Capturar el valor de la seleccion de items, con el checkbox "seleccionar"
+// Caputar el importe de la cantidad del item
+// En el caso de que sea true, sumar el item y la   cantidad a la compra
+
+
+
+let opcion1= document.getElementById('opcion1');
+let msg1 = document.getElementById('msg1');
+
+  opcion1.addEventListener('click', function() {
+    if(opcion1.checked) {
+      
+      msg1.innerText = 'Item agregado a la compra';
+    } else {
+      msg1.innerText = 'Item NO agregado a la compra';
+    }
+  });
+
+let opcion2 = document.getElementById('opcion2');
+let msg2 = document.getElementById('msg2');
+
+  opcion2.addEventListener('click', function() {
+    if(opcion2.checked) {
+
+      msg2.innerText = 'Item agregado a la compra';
+    } else {
+      msg2.innerText = 'Item NO agregado a la compra';
+    }
+  });
+
 
 
 // Seleccionar items para la compra, 
 // No funciona aun en la pagina, sino como ventana emergente
 
 // ` comillas invertidas para concatenar string, sin usar el + 
+// += para que vaya agregando los usuarios y no se quede en solo el primero
 
 let botonComprar = document.getElementById('comprar')
 botonComprar.addEventListener('click', Comprar)

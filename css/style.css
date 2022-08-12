@@ -29,7 +29,8 @@ ul {
   flex-direction: column;
   align-items: center;
   padding: 100px;
-  width: 50vw; }
+  padding-bottom: 0%;
+  width: 80vw; }
   .comprar .boton {
     padding: 30px; }
   .comprar .input-group {
@@ -77,6 +78,11 @@ ul {
   font-family: 'Cookie', cursive;
   font-size: xx-large; }
 
+.imagenFlex {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; }
+
 .galeriaFotos {
   display: flex;
   flex-wrap: wrap;
@@ -104,3 +110,19 @@ img:hover {
   justify-items: center;
   font-size: 60px;
   font-family: 'Nanum Brush Script', cursive; }
+
+@media only screen and (min-width: 360px) and (max-width: 1100px) {
+  .container {
+    justify-items: center; }
+    .container .titulo {
+      font-size: larger;
+      justify-items: center; }
+  .navbar-brand {
+    display: none; }
+  .comprar {
+    width: fit-content;
+    padding: auto; }
+  .detalleProductos {
+    padding: 5px; }
+  .productos {
+    padding: 5px; } }
