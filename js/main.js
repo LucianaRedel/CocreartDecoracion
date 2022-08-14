@@ -1,42 +1,121 @@
 
 // Incorporacion y modificaciones clase DOM
+// Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
+let carritoDeCompras = []
 
-// Construccion de productos
+// Variables globales a utilizar 
 
-class Producto {
-    constructor(id, nombre, precio, stock, disponibilidad) {
-        this.id = id;
-        this.nombre = nombre.toLowerCase();
-        this.precio = parseInt(precio);
-        this.stock = parseInt(stock);
-        this.disponibilidad = disponibilidad.toLowerCase();
+const contenedorProductos=document.getElementById('contenedor-productos');
+const contenedorCarrito=document.getElementById('carrito-contenedor');
+
+const contadorCarrito=document.getElementById('carrito-contador');
+const precioTotal=document.getElementById('precioTotal');
+
+const seleccionModelos=document.getElementById('seleccion-modelos');
+const buscador=document.getElementById('buscar');
+
+// Filtro inicial de la pagina
+
+seleccionModelos.addEventListener('change', ()=>{
+    if(seleccionModelos.value === 'all'){
+        crearItems(productos)
     }
-    sumarIvayEnvio() {
-        this.precio = Math.round(this.precio * 1.21 * 1.20);
+    else{
+        crearItems(productos.filter (item=> item.nombre === seleccionModelos.value))
     }
+})
+
+crearItems(productos);
+
+
+function crearItems(array){
+    contenedorProductos.innerHTML='' // vaciar el contenedor para mostrar solo la seleccion de items que viene de seleccion modelos
+    array.forEach(item => {
+        let div = document.createElement('div') // Creacion del NODO
+        div.className='producto' //Accedes al elemento que creas y le agregas la clase que le corresponde
+        div.innerHTML=`<div class="card" style="width: 18rem;">
+                       <img src="${item.imagen}" class="card-img-top" alt="...">
+                       <div class="card-body">
+                       <h5 class="card-title">${item.nombre}</h5>
+                       <p class="card-text">${item.descripcion}</p>
+                       <p class="card-text">${item.disponibilidad}</p>
+                       <p class="card-text">Precio $${item.precio}</p>
+                       <a href="#" id="botonAgregar${item.id}" class="btn btn-primary">Agregar a la compra</a>
+                       </div>
+                       </div>
+                       ` // Estructura del NODO
+    contenedorProductos.appendChild(div)
+
+    let btnAgregar=document.getElementById(`botonAgregar${item.id}`)
+    btnAgregar.addEventListener('click',()=>{
+        agregarCarrito(item.id);
+    })
+
+    })
+
 }
 
-// Creo los items de la pagina con los datos necesarios para la venta 
 
-const productos = [];
+function agregarCarrito(id){
+    let existeItem=carritoDeCompras.find(item=> item.id === id)
+    if(existeItem){
+        existeItem.cantidad = existeItem.cantidad + 1
+        existeItem.stock = existeItem.stock--
+        document.getElementById(`cant${existeItem.id}`).innerHTML = `<p id="cant${existeItem.id}">Cantidad: ${existeItem.cantidad}</p>`
+        actualizarCarrito()
+    }
+    else{
+        let productoElegido=productos.find(item=> item.id === id)
+        productoElegido.cantidad = 1
+        productoElegido.stock = productoElegido.stock--
+        carritoDeCompras.push(productoElegido);
+        mostrarCarrito(productoElegido)
+        actualizarCarrito()
+    }
+    
 
-productos.push(new Producto(1, 'Flores para decoración', 500, 10, 'Entrega inmediata'));
-productos.push(new Producto(2, 'Porta velas', 800, 5, 'Entrega inmediata'));
-productos.push(new Producto(3, 'Frascos decorados', 250, 8, 'Entrega en 24 hs'));
-productos.push(new Producto(4, 'Bandeja', 650, 2, 'Entrega inmediata'));
-productos.push(new Producto(5, 'Jabones decorados', 100, 25, 'Entrega inmediata'));
-productos.push(new Producto(6, 'Caja con dos frascos decorados', 900, 18, 'Entrega inmediata'));
-productos.push(new Producto(7, 'Cajoncito de guardado', 700, 15, 'Entrega en 36 hs'));
-productos.push(new Producto(8, 'Caja de té', 1200, 1, 'Entrega en 48 hs'));
-
-// Sumar el IVA y el costo de envio 
-
-for (const Producto of productos) {
-    Producto.sumarIvayEnvio()
 }
 
-// Actualizar datos del producto en HTML, nombre, stock y precio
+function mostrarCarrito(productoElegido){
+    let div=document.createElement('div')
+    div.setAttribute('class', 'productoEnCarrito')
+    div.innerHTML=`<p>${productoElegido.nombre}</p>
+                   <p id="cant${productoElegido.id}">Cantidad:${productoElegido.cantidad}</p>
+                   <p>Precio unitario: $${productoElegido.precio}</p>
+                   <button class="boton-eliminar" id="eliminar${productoElegido.id}">
+                   <i class="fas fa-trash-alt"></i>
+                   </button>
+                   `
+    contenedorCarrito.appendChild(div)
+
+    let btnEliminar=document.getElementById(`eliminar${productoElegido.id}`)
+    btnEliminar.addEventListener('click', ()=>{
+        if(productoElegido.cantidad === 1){
+            carritoDeCompras=carritoDeCompras.filter(item => item.id !== productoElegido.id)
+            btnEliminar.parentElement.remove() // Es el padre del elemento eliminar
+            actualizarCarrito()
+        }
+        else{
+            productoElegido.cantidad = productoElegido.cantidad - 1
+            document.getElementById(`cant${productoElegido.id}`).innerHTML=`<p id="cant${productoElegido.id}">Cantidad: ${productoElegido.cantidad}</p>`
+            actualizarCarrito()
+        }
+    })
+
+}
+
+
+function actualizarCarrito(){
+    contadorCarrito.innerText= carritoDeCompras.reduce((acc,item)=> acc + item.cantidad, 0)
+    precioTotal.innerHTML= carritoDeCompras.reduce((acc,item)=> acc + (item.precio * item.cantidad), 0)
+
+}
+
+
+
+
+/*
 
 // Como hacer para buscar el item y que actualice el stock? 
 // Como hacer una sola funcion para todos los eventos? 
@@ -56,131 +135,8 @@ function Seleccionar1(){
     else {
         console.log('item no encontrado');
     }
-    //let opcion=document.getElementById('opcion1').value
-   // productos.find((item) => { if(item.nombre === opcion) {
-     // return item.id;
-   
-    //} 
-   // else{
-      // alert('error')
-    //}
-//})
-        
-}
-
-//precio1.innerHTML= `Precio $ x`
-//stock1.innerHTML= `Stock x`
-//entrega1.innerHTML=`Condición x`
-
-/*
-let botonSeleccionar2 = document.getElementById('flush-collapseTwo')
-botonSeleccionar2.addEventListener('mousemove', Seleccionar2)
-
-function Seleccionar2(){ 
-   
-    precio2.innerHTML= `Precio x`
-    stock2.innerHTML= `Stock x`
-    entrega2.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar3 = document.getElementById('flush-collapseThree')
-botonSeleccionar3.addEventListener('mousemove', Seleccionar3)
-
-function Seleccionar3(){ 
-   
-    precio3.innerHTML= `Precio x`
-    stock3.innerHTML= `Stock x`
-    entrega3.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar4 = document.getElementById('flush-collapseFour')
-botonSeleccionar4.addEventListener('mousemove', Seleccionar4)
-
-function Seleccionar4(){ 
-   
-    precio4.innerHTML= `Precio x`
-    stock4.innerHTML= `Stock x`
-    entrega4.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar5 = document.getElementById('flush-collapseFive')
-botonSeleccionar5.addEventListener('mousemove', Seleccionar5)
-
-function Seleccionar5(){ 
-   
-    precio5.innerHTML= `Precio x`
-    stock5.innerHTML= `Stock x`
-    entrega5.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar6 = document.getElementById('flush-collapseSix')
-botonSeleccionar6.addEventListener('mousemove', Seleccionar6)
-
-function Seleccionar6(){ 
-   
-    precio6.innerHTML= `Precio x`
-    stock6.innerHTML= `Stock x`
-    entrega6.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar7 = document.getElementById('flush-collapseSeven')
-botonSeleccionar7.addEventListener('mousemove', Seleccionar7)
-
-function Seleccionar7(){ 
-   
-    precio7.innerHTML= `Precio x`
-    stock7.innerHTML= `Stock x`
-    entrega7.innerHTML=`Condición x`
-
-}
-
-let botonSeleccionar8 = document.getElementById('flush-collapseEight')
-botonSeleccionar8.addEventListener('mousemove', Seleccionar8)
-
-function Seleccionar8(){ 
-   
-    precio8.innerHTML= `Precio x`
-    stock8.innerHTML= `Stock x`
-    entrega8.innerHTML=`Condición x`
-
-}
-
-*/
-
-// Capturar el valor de la seleccion de items, con el checkbox "seleccionar"
-// Caputar el importe de la cantidad del item
-// En el caso de que sea true, sumar el item y la   cantidad a la compra
 
 
-
-let opcion1= document.getElementById('opcion1');
-let msg1 = document.getElementById('msg1');
-
-  opcion1.addEventListener('click', function() {
-    if(opcion1.checked) {
-      
-      msg1.innerText = 'Item agregado a la compra';
-    } else {
-      msg1.innerText = 'Item NO agregado a la compra';
-    }
-  });
-
-let opcion2 = document.getElementById('opcion2');
-let msg2 = document.getElementById('msg2');
-
-  opcion2.addEventListener('click', function() {
-    if(opcion2.checked) {
-
-      msg2.innerText = 'Item agregado a la compra';
-    } else {
-      msg2.innerText = 'Item NO agregado a la compra';
-    }
-  });
 
 
 
@@ -273,7 +229,7 @@ function Comprar(){
 
 }
 
-
+*/
 
 
 

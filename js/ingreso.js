@@ -84,16 +84,16 @@ function Ingresar(){
     {
         if(usuarioIngresado.contraseña==contraseñaIngresado)
         {
-            document.querySelector('#seccionComprar').style.display='none';
-            mensaje.innerHTML='Bienvenido a CocreArt' + ' ' + nombreIngresado + ' ' + apellidoIngresado;
+            //document.querySelector('#seccionComprar').style.display='none';
+            //mensaje.innerText='Bienvenido a CocreArt' + ' ' + nombreIngresado + ' ' + apellidoIngresado;
             window.location = "comprar1.html"
         }
         else{
-            mensajeIngresoError.innerHTML=`Por favor reingrese los datos correctos para ingresar a la pagina`;
+            mensajeIngresoError.innerText=`Por favor reingrese los datos correctos para ingresar a la pagina`;
         }
     }
     else{
-        mensajeIngreso.innerHTML=`No existe el usuario`;
+        mensajeIngreso.innerText=`No existe el usuario`;
     }
 }
 

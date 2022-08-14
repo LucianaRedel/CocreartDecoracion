@@ -83,6 +83,26 @@ ul {
   flex-direction: row;
   justify-content: center; }
 
+#contenedor-productos {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 50px;
+  margin-bottom: 30px; }
+
+.seleccion {
+  font-family: 'Cookie', cursive;
+  font-size: x-large;
+  color: black;
+  display: grid;
+  justify-items: center;
+  padding-top: 20px; }
+
+.carrito {
+  display: grid;
+  justify-items: center;
+  padding-bottom: 20px; }
+
 .galeriaFotos {
   display: flex;
   flex-wrap: wrap;
