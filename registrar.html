@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="Decoracion en cajas, cajas de te, jabones decorados,">
+    <meta name="description" content="Decoracion en cajas">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&family=Pacifico&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/1c91f25296.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sacramento&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
+    <link rel="shorcut icon" href="./img/logo.jpeg">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Registrar usuario / Cocreart</title>
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light">
+            <div class="container-fluid">
+                <a href="./index.html"> <img src="./img/IMG_7678.jpg" class="img-thumbnail" width="250" height="350"
+                        alt="logo"> </a>
+                <a class="navbar-brand"> Decoupage sobre madera y vidrio</a>
+                <a class="navbar-brand"> Souveniers </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./index.html">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./compra.html">Comprar</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Novedades</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Ocasiones especiales
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Pascuas</a></li>
+                                <li><a class="dropdown-item" href="#">Navidad</a></li>
+                                <li><a class="dropdown-item" href="#">Día de la madre</a></li>
+                                <li><a class="dropdown-item" href="#">Día del padre</a></li>
+                                <li><a class="dropdown-item" href="#">Día del niño</a></li>
+                                <li><a class="dropdown-item" href="#">Día del amigo</a></li>
+                            </ul>
+                        </li>
+                        <!-- <li class="nav-item dropdown"> -->
+                            <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" -->
+                                <!-- aria-expanded="false"> -->
+                                <!-- Productos -->
+                            <!-- </a> -->
+                            <!-- <ul class="dropdown-menu"> -->
+                                <!-- <li><a class="dropdown-item" href="#">Jabones decorados</a></li> -->
+                                <!-- <li><a class="dropdown-item" href="#">Cajas de té y bandejas</a></li> -->
+                                <!-- <li><a class="dropdown-item" href="#">Flores para decoración</a></li> -->
+                                <!-- <li><a class="dropdown-item" href="#">Servilleteros y porta velas</a></li> -->
+                                <!-- <li><a class="dropdown-item" href="#">Frascos y botellas decorados</a></li> -->
+                            <!-- </ul> -->
+                        <!-- </li> -->
+                        
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+
+    </header>
+
+    <main>
+        <section class="registrarUsuario">
+
+            <form class="row g-3">
+                <div class="col-md-4">
+                  <label for="validationDefault01" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="registroNombre" value="" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationDefault02" class="form-label">Apellido</label>
+                  <input type="text" class="form-control" id="registroApellido" value="" required>
+                </div>
+                <div class="col-md-4">
+                  <label for="validationDefaultUsername" class="form-label">Email</label>
+                  <div class="input-group">
+                    <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                    <input type="text" class="form-control" id="registroEmail"  aria-describedby="inputGroupPrepend2" required>
+                  </div>
+                </div>
+                <div class="input-group">
+                    <label for="validationDefault02" class="form-label">Contraseña</label>
+                    <input type="password" class="form-control" id="registroClave"  aria-describedby="inputGroupPrepend2" value="" required>
+                  </div>
+                <div class="col-md-6">
+                  <label for="validationDefault03" class="form-label">Dirección</label>
+                  <input type="text" class="form-control" id="registroDireccion" required>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationDefault04" class="form-label">Ciudad</label>
+                  <select class="form-select" id="registroCiudad" required>
+                    <option selected disabled value=""> Seleccionar </option> 
+                    <option value="Capital Federal"> Capital Federal </option> 
+                    <option value="Catamarca"> Catamarca </option>
+                    <option value="Chaco"> Chaco </option>
+                    <option value="Chubut"> Chubut </option>
+                    <option value="Cordoba"> Córdoba </option>
+                    <option value="Corriente"> Corrientes </option>
+                    <option value="Entre Rios"> Entre Ríos </option>
+                    <option value="Formosa"> Formosa </option>
+                    <option value="Jujuy"> Jujuy </option>
+                    <option value="La Pampa"> La Pampa </option>
+                    <option value="La Rioja"> La Rioja </option>
+                    <option value="Mendoza"> Mendoza </option>
+                    <option value="Misiones"> Misiones </option>
+                    <option value="Neuquen"> Neuquén </option>
+                    <option value="Rio Negro"> Río Negro </option>
+                    <option value="Salta"> Salta </option>
+                    <option value="San Juan"> San Juan </option>
+                    <option value="San Luis"> San Luis </option>
+                    <option value="Santa Cruz"> Santa Cruz </option>
+                    <option value="Santa Fe"> Santa Fe </option>
+                    <option value="Santiago del Estero"> Santiago del Estero </option>
+                    <option value="Tierra del Fuego"> Tierra del Fuego </option>
+                    <option value="Tucuman"> Tucumán </option>
+                  </select>
+                </div>
+                <div class="col-md-3">
+                  <label for="validationDefault05" class="form-label">Código Postal</label>
+                  <input type="text" class="form-control" id="registroCodigo" required>
+                </div>
+                <div class="col-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+                    <label class="form-check-label" for="invalidCheck2">
+                      Aceptar las condiciones de uso
+                    </label>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary" type="submit" id="registrar">Registrar nuevo usuario</button>
+                </div>
+              </form>
+
+        </section>
+ 
+
+    </main>
+
+    <footer>
+        <section class="footerFlex">
+            <div>
+                <h3> Seguinos también en las redes </h3>
+                <h4> CocreArt Decoración </h4>
+                <h6> Webpage developed by Luciana Redel - Coder House - 2022</h6>
+            </div>
+            <div>
+                <ul>
+                    <div>
+                        <li> <img src="./img/facebooklogo" alt="Facebook logo" width="30" height="30">
+                            <a href="https://www.facebook.com/media/set/?set=a.546726952020801&type=3" target="_blank">
+                                Facebook</a></li>
+                    </div>
+                    <br>
+                    <div>
+                        <li> <img src="./img/instagramlogo" alt="Instagram logo" width="30" height="30">
+                            <a href="https://www.instagram.com/cocreart.decoracion/?hl=en" target="_blank"> Instagram
+                            </a></li>
+                    </div>
+                </ul>
+            </div>
+        </section>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+    </script>
+      <script src="./js/registro.js"> </script>
+      <script src="./js/ingreso.js"> </script>
+      <script src="./js/main.js"> </script>
+</body>
+
+</html>

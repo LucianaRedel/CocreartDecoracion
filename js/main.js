@@ -117,32 +117,6 @@ function actualizarCarrito(){
 
 /*
 
-// Como hacer para buscar el item y que actualice el stock? 
-// Como hacer una sola funcion para todos los eventos? 
-
-let botonSeleccionar1 = document.getElementById('flush-collapseOne')
-botonSeleccionar1.addEventListener('mousemove', Seleccionar1)
-
-function Seleccionar1(){ 
-    let productosStock; 
-    productos.forEach(item =>{
-         productosStock = item.nombre
-    })
-    let nombreProd = document.getElementById('opcion1').value;
-    if(productosStock.includes(nombreProd)){
-        console.log('item encontrado');
-    }
-    else {
-        console.log('item no encontrado');
-    }
-
-
-
-
-
-// Seleccionar items para la compra, 
-// No funciona aun en la pagina, sino como ventana emergente
-
 // ` comillas invertidas para concatenar string, sin usar el + 
 // += para que vaya agregando los usuarios y no se quede en solo el primero
 

@@ -28,20 +28,20 @@
 }
 
 .input-group-text{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
     justify-self: center;
 }
 
 .btn{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
     background-color: lightpink;
     color: black;
 }
 
 .accordion-item{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
 }
 
@@ -50,21 +50,21 @@
 }
 
 #mensajeIngresoError{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
     color: red;
 }
 
 
 #mensajeIngreso{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
     color: red;
 }
 
 
 #mensaje{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: xx-large;
 }
 
@@ -83,7 +83,7 @@
 }
 
 .seleccion{
-    font-family: 'Cookie', cursive;
+    font-family: 'Nanum Brush Script', cursive;
     font-size: x-large;
     color: black;
     display: grid;
@@ -95,5 +95,16 @@
     display: grid;
     justify-items: center;
     padding-bottom: 20px;
+}
+
+.card{
+    font-family: 'Cookie', cursive;
+    font-size: x-large;
+}
+
+.card-title{
+        font-family: 'Cookie', cursive;
+        font-size: xx-large;
+        font-weight: bold;
 }
 

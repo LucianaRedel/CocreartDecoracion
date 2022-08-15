@@ -1,13 +1,17 @@
 // Incorporacion y modificaciones clase DOM
 
-// Ingreso y registracion de usuarios nuevos
+// Ingreso de usuarios
 
 class Usuario{
-    constructor(nombre, apellido, email, contraseña){
-        this.nombre=nombre.toLowerCase();
-        this.apellido=apellido.toLowerCase();
-        this.email=email.toLowerCase();
-        this.contraseña=contraseña.toLowerCase();
+    constructor(id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal){
+        this.id=id;
+        this.nombre=nombre;
+        this.apellido=apellido;
+        this.email=email;
+        this.contraseña=contraseña;
+        this.direccion=direccion;
+        this.ciudad=ciudad;
+        this.codigoPostal=codigoPostal;
     }  
 }
 
@@ -15,10 +19,10 @@ function baseUsuarios(){
 
 const usuarios=[];
 
-usuarios.push(new Usuario('Andres','Santos', 'asantos@gmail.com','autos'));
-usuarios.push(new Usuario('Carolina','Bustamante', 'carolinabustamante@gmail.com','venezuela'));
-usuarios.push(new Usuario('Mariana','Quiroga', 'marianaquiroga@gmail.com','tortas'));
-usuarios.push(new Usuario('Laura','Escobar', 'lauraescobar@gmail.com','calle corrientes'));
+usuarios.push(new Usuario(0, 'Andres','Santos', 'asantos@gmail.com','autos', 'Av Cordoba 11', 'Capital Federal', '1001'));
+usuarios.push(new Usuario(1, 'Carolina','Bustamante', 'carolinabustamante@gmail.com','venezuela', 'Avellaneda 124', 'Buenos Aires', '1340'));
+usuarios.push(new Usuario(2, 'Mariana','Quiroga', 'marianaquiroga@gmail.com','tortas', 'Av Saenz 1340', 'Capital Federal', '1221'));
+usuarios.push(new Usuario(3, 'Laura','Escobar', 'lauraescobar@gmail.com','calle corrientes', 'Miraflores 2202', 'Buenos Aires', '1720'));
 
 return usuarios;
 
@@ -26,40 +30,7 @@ return usuarios;
 
 baseUsuarios();
 
-// Registro de nuevo usuario no funciona
 
-let listadoDeUsuarios = [];
-
-let botonRegistrar = document.getElementById('registrar')
-botonRegistrar.addEventListener('click', Registrar)
-
-function Registrar(){
-    let nuevoUsuario = new Usuario(nombreIngreso.value, apellidoIngreso.value, claveDeIngreso.value);
-    listadoDeUsuarios.push(nuevoUsuario)
-}
-
-
-// Registro de nuevo usuario no funciona
-
-// Otra opcion para registro de usuarios 
-
-function registrarUsuario(){
-    let nombre= document.getElementById('nombreIngreso').value;
-    let apellido= document.getElementById('apellidoIngreso').value;
-    let email=document.getElementById('email').value;
-    let contraseña=document.getElementById('claveDeIngreso').value;
-
-    const usuarios = {};
-    if (listadoDeUsuarios.length === 0){
-        usuarios = new Usuario (0, nombre, apellido, email, contraseña);
-    }
-    else{
-        const id = listadoDeUsuarios[listadoDeUsuarios.length - 1].id + 1;
-        usuarios = new Usuario (id, nombre, apellido, email, contraseña);
-    }
-}
-
-// Registro de nuevo usuario no funciona
 
 // Definiciones para el ingreso a la pagina
 
@@ -126,3 +97,4 @@ function mostrarUsuarios (){
         }
         alert(msg);
 }
+
