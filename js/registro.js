@@ -1,15 +1,14 @@
 
 // Registracion de nuevos usuarios
 
-let listadoDeUsuarios=[];
+
 
 let botonRegistrar = document.getElementById('registrar')
 botonRegistrar.addEventListener('click', registrarUsuario)
 
 
-
-function registrarUsuario(){
-    let id='';
+function registrarUsuario(){ 
+    let id= '';
     let nombre= document.getElementById('registroNombre').value;
     let apellido= document.getElementById('registroApellido').value;
     let email=document.getElementById('registroEmail').value;
@@ -18,13 +17,19 @@ function registrarUsuario(){
     let ciudad=document.getElementById('registroCiudad').value;
     let codigoPostal=document.getElementById('registroCodigo').value;
 
-    const usuarios = {};
+    RecuperarUsuarios();
+    listadoDeUsuarios=[];
+
+    let nuevoUsuario = {};
     if (listadoDeUsuarios.length === 0){
-        let id=1 
-        usuarios = new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
+        let id=0 
+        nuevoUsuario=new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
+        listadoDeUsuarios.push(nuevoUsuario);
     }
     else{
-        const id = listadoDeUsuarios[listadoDeUsuarios.length - 1].id + 1;
-        usuarios = new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
+        let id = listadoDeUsuarios[listadoDeUsuarios.length - 1].id + 1;
+        nuevoUsuario=new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
+        listadoDeUsuarios.push(nuevoUsuario);
     }
+    GuardarUsuario(nuevoUsuario);
 }

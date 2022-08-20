@@ -2,6 +2,7 @@
 
 // Ingreso de usuarios
 
+
 class Usuario{
     constructor(id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal){
         this.id=id;
@@ -17,27 +18,55 @@ class Usuario{
 
 function baseUsuarios(){
 
-const usuarios=[];
+let usuarios=[]
 
 usuarios.push(new Usuario(0, 'Andres','Santos', 'asantos@gmail.com','autos', 'Av Cordoba 11', 'Capital Federal', '1001'));
-usuarios.push(new Usuario(1, 'Carolina','Bustamante', 'carolinabustamante@gmail.com','venezuela', 'Avellaneda 124', 'Buenos Aires', '1340'));
-usuarios.push(new Usuario(2, 'Mariana','Quiroga', 'marianaquiroga@gmail.com','tortas', 'Av Saenz 1340', 'Capital Federal', '1221'));
-usuarios.push(new Usuario(3, 'Laura','Escobar', 'lauraescobar@gmail.com','calle corrientes', 'Miraflores 2202', 'Buenos Aires', '1720'));
+usuarios.push(new Usuario(1, 'Carolina','Bustamante', 'cbustamante@gmail.com','venezuela', 'Avellaneda 124', 'Buenos Aires', '1340'));
+usuarios.push(new Usuario(2, 'Mariana','Quiroga', 'mquiroga@gmail.com','tortas', 'Av Saenz 1340', 'Capital Federal', '1221'));
+usuarios.push(new Usuario(3, 'Laura','Escobar', 'lescobar@gmail.com','calle corrientes', 'Miraflores 2202', 'Buenos Aires', '1720'));
+usuarios.push(new Usuario(4, 'Marcelo', 'Gonzalez', 'mgonzalez@gmail.com', 'bpcs', 'Maura 105', 'Capital Federal', '1690'));
 
 return usuarios;
 
 }
 
-baseUsuarios();
+listadoDeUsuarios = baseUsuarios();
 
+
+// Guardo los usuarios en el local storage, con una funcion 
+
+const GuardarUsuario=()=>{
+    let enJSON= JSON.stringify(listadoDeUsuarios);
+
+    let usuariosGuardados = localStorage.setItem('usuariosGuardados', enJSON);
+    return usuariosGuardados;
+}
+
+
+// Recuperar los usuarios guardados
+
+const RecuperarUsuarios=()=>{
+    const usuariosRecuperados=JSON.parse(localStorage.getItem('usuariosGuardados'));
+
+    const arrayUsuarios=[]; 
+    for (const objeto of usuariosRecuperados)
+    arrayUsuarios.push(new Usuario(objeto. id, objeto.nombre, objeto.apellido, objeto.email, objeto.contraseña, objeto.direccion, objeto.ciudad, objeto.codigoPostal));
+
+
+    let listadoDeUsuarios= arrayUsuarios
+    console.log(listadoDeUsuarios);
+    return listadoDeUsuarios;
+}
 
 
 // Definiciones para el ingreso a la pagina
 
+
+
 let nombreIngresado;
 let apellidoIngresado;
-let emailIngresado;
 let contraseñaIngresado; 
+let emailIngresado;
 
 let botonIngresar = document.getElementById('ingresar')
 botonIngresar.addEventListener('click', Ingresar)
@@ -45,15 +74,16 @@ botonIngresar.addEventListener('click', Ingresar)
 function Ingresar(){
     nombreIngresado=document.getElementById('nombreIngreso').value;
     apellidoIngresado=document.getElementById('apellidoIngreso').value;
-    emailIngresado=document.getElementById('email').value;
     contraseñaIngresado=document.getElementById('claveDeIngreso').value;
+    emailIngresado=document.getElementById('email').value;
+    
 
-    let listadoDeUsuarios=baseUsuarios();
+    let listadoDeUsuarios = baseUsuarios();
 
-    let usuarioIngresado=listadoDeUsuarios.find(((usuario)=>usuario.nombre==nombreIngresado) && ((usuario)=>usuario.apellido==apellidoIngresado) && ((usuario)=>usuario.email=emailIngresado));
+    let usuarioIngresado = listadoDeUsuarios.find(((usuario)=>usuario.nombre==nombreIngresado) && ((usuario)=>usuario.apellido==apellidoIngresado));
     if(usuarioIngresado)
     {
-        if(usuarioIngresado.contraseña==contraseñaIngresado)
+        if((usuarioIngresado.contraseña===contraseñaIngresado) && (usuarioIngresado.email===emailIngresado))
         {
             //document.querySelector('#seccionComprar').style.display='none';
             //mensaje.innerText='Bienvenido a CocreArt' + ' ' + nombreIngresado + ' ' + apellidoIngresado;
@@ -68,7 +98,7 @@ function Ingresar(){
     }
 }
 
-// Opcion para eliminacion de usuarios
+// Opcion para eliminacion de usuarios // No esta funcionando en la pagina 
 
 function eliminarUsuario (){
     let emailIngresado=document.getElementById('email').value;
@@ -83,7 +113,7 @@ function eliminarUsuario (){
     mensajeIngreso.innerHTML=`Se ha eliminado el usuario`
 }
 
-// Opcion para mostrar el listado de usuarios 
+// Opcion para mostrar el listado de usuarios // no esta funcionando en la pagina
 
 function mostrarUsuarios (){
     let msg = '';
