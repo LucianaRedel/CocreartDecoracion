@@ -33,14 +33,16 @@ return usuarios;
 listadoDeUsuarios = baseUsuarios();
 
 
+
 // Guardo los usuarios en el local storage, con una funcion 
 
 const GuardarUsuario=()=>{
-    let enJSON= JSON.stringify(listadoDeUsuarios);
 
-    let usuariosGuardados = localStorage.setItem('usuariosGuardados', enJSON);
-    return usuariosGuardados;
-}
+       let usuariosGuardados = localStorage.setItem('usuariosGuardados', JSON.stringify(listadoDeUsuarios));
+       return usuariosGuardados;
+
+    }
+
 
 
 // Recuperar los usuarios guardados
@@ -57,6 +59,7 @@ const RecuperarUsuarios=()=>{
     console.log(listadoDeUsuarios);
     return listadoDeUsuarios;
 }
+
 
 
 // Definiciones para el ingreso a la pagina
@@ -79,6 +82,7 @@ function Ingresar(){
     
 
     let listadoDeUsuarios = baseUsuarios();
+    //let listadoDeUsuarios = RecuperarUsuarios();
 
     let usuarioIngresado = listadoDeUsuarios.find(((usuario)=>usuario.nombre==nombreIngresado) && ((usuario)=>usuario.apellido==apellidoIngresado));
     if(usuarioIngresado)
@@ -91,6 +95,11 @@ function Ingresar(){
         }
         else{
             mensajeIngresoError.innerText=`Por favor reingrese los datos correctos para ingresar a la pagina`;
+
+            document.getElementById('nombreIngreso').value="";
+            document.getElementById('apellidoIngreso').value="";
+            document.getElementById('claveDeIngreso').value="";
+            document.getElementById('email').value="";
         }
     }
     else{

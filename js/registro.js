@@ -17,19 +17,28 @@ function registrarUsuario(){
     let ciudad=document.getElementById('registroCiudad').value;
     let codigoPostal=document.getElementById('registroCodigo').value;
 
-    RecuperarUsuarios();
-    listadoDeUsuarios=[];
+    
+    listadoDeUsuarios= baseUsuarios();
 
     let nuevoUsuario = {};
     if (listadoDeUsuarios.length === 0){
         let id=0 
         nuevoUsuario=new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
         listadoDeUsuarios.push(nuevoUsuario);
+
+        GuardarUsuario(nuevoUsuario);
+
+        window.location = "compra.html"
     }
     else{
         let id = listadoDeUsuarios[listadoDeUsuarios.length - 1].id + 1;
         nuevoUsuario=new Usuario (id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal);
         listadoDeUsuarios.push(nuevoUsuario);
+
+        GuardarUsuario(nuevoUsuario);
+
+        window.location = "compra.html"
     }
-    GuardarUsuario(nuevoUsuario);
+  
 }
+
