@@ -43,6 +43,40 @@ img:hover{
     font-family: 'Nanum Brush Script', cursive;
 }
 
+.col-md-4{
+    width: fit-content;
+}
+
+// .contenedor-form .formulario:nth-child(1){
+//     display: block;
+// }
+
+// .botones{
+//     display: grid;
+//     justify-items: center;
+// }
+
+.botones{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px;
+    .btn{
+        margin: 0 auto;
+    }
+}
+
+.registrarUsuario{
+    position: absolute;
+}
+
+.comprar{
+    position: absolute;
+}
+
+
+
+
 @media only screen and (min-width: 360px) and (max-width: 1100px){
 
 .container{

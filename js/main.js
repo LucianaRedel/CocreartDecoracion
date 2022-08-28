@@ -1,8 +1,21 @@
 
+// Para cargar una funcion cuando se carga el HTML que actualice el carrito de compras
+
+document.addEventListener('DOMContentLoaded', ()=>{
+    mostrarCarrito() || []   
+})
+
+// Para levantar elementos de checkbox 
+// document.querySelector(`input[name="prioridad"]:checked`);
+
+
 // Incorporacion y modificaciones clase DOM
 // Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
 let carritoDeCompras = []
+
+let carritoDeStorage = []
+
 
 // Variables globales a utilizar 
 
@@ -15,7 +28,7 @@ const precioTotal=document.getElementById('precioTotal');
 const seleccionModelos=document.getElementById('seleccion-modelos');
 const buscador=document.getElementById('buscar');
 
-// Filtro inicial de la pagina
+// Filtro inicial de la pagina para seleccionar productos
 
 seleccionModelos.addEventListener('change', ()=>{
     if(seleccionModelos.value === 'all'){
@@ -26,12 +39,14 @@ seleccionModelos.addEventListener('change', ()=>{
     }
 })
 
+// Cargar los productos en la pagina
+
 crearItems(productos);
 
 
 function crearItems(array){
     contenedorProductos.innerHTML='' // vaciar el contenedor para mostrar solo la seleccion de items que viene de seleccion modelos
-    array.forEach(item => {
+    array.forEach( item => {
         let div = document.createElement('div') // Creacion del NODO
         div.className='producto' //Accedes al elemento que creas y le agregas la clase que le corresponde
         div.innerHTML=`<div class="card" style="width: 18rem;">
@@ -56,6 +71,7 @@ function crearItems(array){
 
 }
 
+// Incluir los items en el carrito de compras 
 
 function agregarCarrito(id){
     let existeItem=carritoDeCompras.find(item=> item.id === id)
@@ -76,6 +92,8 @@ function agregarCarrito(id){
     
 
 }
+
+// Mostrar el carrito de compras 
 
 function mostrarCarrito(productoElegido){
     let div=document.createElement('div')
@@ -105,105 +123,54 @@ function mostrarCarrito(productoElegido){
 
 }
 
+// Actualizar el carrito de compras con cantidad y total
 
 function actualizarCarrito(){
     contadorCarrito.innerText= carritoDeCompras.reduce((acc,item)=> acc + item.cantidad, 0)
     precioTotal.innerHTML= carritoDeCompras.reduce((acc,item)=> acc + (item.precio * item.cantidad), 0)
 
+    setCarrito();
+}
+
+// Guardar el carrito de compras en local storage 
+
+function setCarrito(){
+    localStorage.setItem('carritoGuardado', JSON.stringify(carritoDeCompras));
+}
+
+// Recuperar el carrito de compras de local storage 
+
+
+function getCarrito(){
+    const carritoRecuperado = JSON.parse(localStorage.getItem('carritoGuardado'));
+    
+    const arrayProductos=[];
+    for(const obj of carritoRecuperado){
+        arrayProductos.push(new Producto(obj.id, obj.nombre, obj.descripcion, obj.precio, obj.stock, obj.disponibilidad, obj.imagen) )
+    }
+    let carritoDeStorage= arrayProductos
+    console.log(carritoDeStorage);
+    return carritoDeStorage;
+
+}
+
+// Finalizar la compra 
+
+let botonFinalizar = document.getElementById('finalizar')
+botonFinalizar.addEventListener('click', finalizarCompra)
+
+function finalizarCompra(){
+    window.location="opcion1.html";    
+
 }
 
 
 
-
-/*
 
 // ` comillas invertidas para concatenar string, sin usar el + 
-// += para que vaya agregando los usuarios y no se quede en solo el primero
-
-let botonComprar = document.getElementById('comprar')
-botonComprar.addEventListener('click', Comprar)
+// += para que vaya agregando los usuarios y no se quede solo en el primero
 
 
-function Comprar(){
-
-    let compra = [];
-
-
-    const listadoDeProductos = () => {
-        let mensaje = 'Seleccione el o los ítems para agregar a su compra'
-        productos.forEach(item => {
-            mensaje += `
-                Opción ${item.id}, ${item.nombre}, Stock ${item.stock}, Precio final $ ${item.precio}, Disponibilidad ${item.disponibilidad}
-            `
-        })
-        mensaje += `
-                Opción 0: Salir sin selección de ítems o Finalizar la compra
-            `
-        let opcion = Number(prompt(mensaje))
-        return opcion;
-    
-    }
-    
-    
-    let comprar = true;
-    
-    while (comprar) {
-        let opcion = listadoDeProductos()
-        if (opcion >= 1 && opcion <= 8) {
-            let productoElegido = productos.find(item => item.id === opcion)
-            if (compra.length === 0) {
-                productoElegido.cantidad = 1;
-                productoElegido.stock--;
-                compra.push(productoElegido);
-    
-            } else {
-                let productoComprado = compra.find(item => item.id === opcion)
-                if (productoComprado) {
-                    if(productoComprado.stock === 0){
-                        alert ('No hay stock disponible')
-                    }
-                    else{
-                        productoComprado.cantidad++;
-                        productoComprado.stock--;
-                    }
-                   
-                } else {
-                    productoElegido.cantidad = 1;
-                    productoElegido.stock--;
-                    compra.push(productoElegido);
-                }
-            }
-        } else {
-            comprar = false;
-        }
-    
-    }
-    
-    const mostrarTotalCompra = () => {
-        let mensajeCompra = "";
-        if (compra.length > 0) {
-            compra.forEach(item => {
-                mensajeCompra += `
-                Producto ${item.nombre}, Cantidad ${item.cantidad}, Subtotal producto $ ${item.precio * item.cantidad}
-                `
-            })
-            mensajeCompra += `
-                Total compra $ ${compra.reduce ((total, item) => total + (item.precio * item.cantidad),0)}
-                `
-            alert(mensajeCompra)
-        } else {
-            mensajeCompra += 'No hay ítems seleccionados'
-            alert(mensajeCompra)
-        }
-    }
-    
-    mostrarTotalCompra();
-
-
-
-}
-
-*/
 
 
 
