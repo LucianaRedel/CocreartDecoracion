@@ -8,6 +8,7 @@ document.getElementById('finalizarCompra').style.visibility = 'hidden';
 document.getElementById('formularioIngresar').style.visibility = 'hidden';
 document.getElementById('formularioRegistrar').style.visibility = 'hidden';
 
+
 // Construccion de los datos de usuarios 
 class Usuario{
     constructor(id, nombre, apellido, email, contraseña, direccion, ciudad, codigoPostal){
@@ -24,6 +25,8 @@ class Usuario{
 
 listadoDeUsuarios=[]; 
 
+//listadoDeUsuarios.push(new Usuario(1, 'Andres', 'Santos', 'asantos@gmail.com', 'Juan Carlos Cruz 1810', 'Buenos Aires', '1638'));
+
 // Definir funcion de guardado de usuarios 
 
 const GuardarUsuario=()=>{
@@ -36,6 +39,13 @@ const GuardarUsuario=()=>{
  // Funcion para recuperar usuarios guardados 
 
  const RecuperarUsuarios=()=>{
+
+    if(JSON.parse(localStorage.getItem('usuariosGuardados')) === null){
+        listadoDeUsuarios=[];
+        return listadoDeUsuarios;
+    }
+    else{
+
     const usuariosRecuperados=JSON.parse(localStorage.getItem('usuariosGuardados'));
 
     const arrayUsuarios=[]; 
@@ -46,17 +56,19 @@ const GuardarUsuario=()=>{
     let listadoDeUsuarios= arrayUsuarios
     console.log(listadoDeUsuarios);
     return listadoDeUsuarios;
+    }
 }
+
 
 // Registrar / Verificar nuevo usuario
 
 let botonRegistrar = document.getElementById('registrar')
-botonRegistrar.addEventListener('click', registrarUsuario)
+botonRegistrar.addEventListener('click', verificarUsuario)
 
 
 // Verificar si el usuario ya existe 
 
-// No se porque dejo de andar, no pude encontrar el error, estaba andando bien!
+// Volvio a funcionar! 
 
 function verificarUsuario(){
     listadoDeUsuarios=RecuperarUsuarios();
@@ -73,6 +85,11 @@ function verificarUsuario(){
         document.getElementById('registroDireccion').value="";
         document.getElementById('registroCiudad').value="";
         document.getElementById('registroCodigo').value="";
+
+        document.getElementById('formularioRegistrar').style.visibility = 'hidden';
+
+        document.getElementById('formularioIngresar').style.visibility = 'visible';
+
     } else{
         registrarUsuario();
     }
@@ -113,6 +130,10 @@ function registrarUsuario(){
         document.getElementById('registroCiudad').value="";
         document.getElementById('registroCodigo').value="";
 
+        document.getElementById('formularioRegistrar').style.visibility = 'hidden';
+
+        document.getElementById('formularioIngresar').style.visibility = 'visible';
+        
     }
     else{
         let id = listadoDeUsuarios[listadoDeUsuarios.length - 1].id + 1;
@@ -133,9 +154,14 @@ function registrarUsuario(){
         document.getElementById('registroCiudad').value="";
         document.getElementById('registroCodigo').value="";
 
+        document.getElementById('formularioRegistrar').style.visibility = 'hidden';
+
+        document.getElementById('formularioIngresar').style.visibility = 'visible';
     }
   
 }
+
+
 
 // Ingreso a la pagina para comprar, usuario ya registrado 
 
@@ -149,6 +175,7 @@ let botonIngresar = document.getElementById('ingresar')
 botonIngresar.addEventListener('click', Ingresar)
 
 function Ingresar(){
+    
 
     nombreIngresado=document.getElementById('nombreIngreso').value;
     apellidoIngresado=document.getElementById('apellidoIngreso').value;
@@ -184,7 +211,12 @@ function Ingresar(){
             document.getElementById('apellidoIngreso').value="";
             document.getElementById('claveDeIngreso').value="";
             document.getElementById('email').value="";
+
+            document.getElementById('formularioIngresar').style.visibility = 'hidden';
+
+            document.getElementById('formularioRegistrar').style.visibility = 'visible';
     }
+
     
 }
 
@@ -247,13 +279,34 @@ function Finalizar(){
 
 }
 
+// Intento para limpiar la pagina y cargar el formulario de ingreso luego de la registracion 
+
+function Recargar(){
+    setTimeout(()=>{
+        window.location.reload()
+    }, 500);
+
+    clearTimeout();
+}
+
+function Cargar(){
+
+    document.getElementById('formularioIngresar').style.visibility = 'visible';
+
+}
+
 let mostrarIngresar=document.getElementById('botonIngresar')
 mostrarIngresar.addEventListener('click', Ingreso)
 
 function Ingreso(){
 
-    document.getElementById('formularioIngresar').style.visibility = 'visible';
+    //Recargar();
 
+    //clearTimeout();
+
+    //Cargar();
+
+    document.getElementById('formularioIngresar').style.visibility = 'visible';
 }
 
 let mostrarRegistrar=document.getElementById('botonRegistrar')
@@ -275,11 +328,31 @@ function pagarCompra (){
     window.location='https://www.mercadopago.com.ar'
 }
 
+// Nuevo intento de almacenar usuarios en local storage
 
+let botonProbar=document.getElementById('botonPrueba')
+botonProbar.addEventListener('click', recuperarUsuariosStorage)
+
+function recuperarUsuariosStorage(){
+    let usuariosGuardados=JSON.parse(localStorage.getItem('usuariosGuardados'));
+    if(usuariosGuardados){
+        return usuariosGuardados;
+    }
+    else{
+        alert('no hay usuarios guardados')
+    }
+}
+
+// function guardarUsuarioLocal (usuariosGuardados){
+//     listadoDeUsuarios.push(usuariosGuardados);
+
+//     localStorage.setItem('usuariosGuardados', JSON.stringify(listadoDeUsuarios))
+// }
 
 
 
 /*
+
 
 
 
