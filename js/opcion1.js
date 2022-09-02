@@ -31,8 +31,9 @@ listadoDeUsuarios=[];
 
 const GuardarUsuario=()=>{
 
-    let usuariosGuardados = localStorage.setItem('usuariosGuardados', JSON.stringify(listadoDeUsuarios));
-    return usuariosGuardados;
+    //let usuariosGuardados = 
+    localStorage.setItem('usuariosGuardados', JSON.stringify(listadoDeUsuarios));
+    //return usuariosGuardados;
 
  }
 
