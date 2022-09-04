@@ -1,20 +1,18 @@
 
 // Para cargar una funcion cuando se carga el HTML que actualice el carrito de compras
 
-document.addEventListener('DOMContentLoaded', ()=>{
-    mostrarCarrito() || []   
-})
+// document.addEventListener('DOMContentLoaded', ()=>{
+//      mostrarCarrito() || [];   
+// })
 
-// Para levantar elementos de checkbox 
-// document.querySelector(`input[name="prioridad"]:checked`);
-
-
-// Incorporacion y modificaciones clase DOM
 // Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
 let carritoDeCompras = []
 
-let carritoDeStorage = []
+let carritoDeStorage = getCarrito();
+
+console.log(carritoDeStorage);
+console.log(carritoDeCompras);
 
 
 // Variables globales a utilizar 
@@ -142,33 +140,89 @@ function setCarrito(){
 
 
 function getCarrito(){
+    if(JSON.parse(localStorage.getItem('carritoGuardado')===null)){
+        carritoDeStorage=[];
+        return carritoDeStorage
+    }
+    else{
+
     const carritoRecuperado = JSON.parse(localStorage.getItem('carritoGuardado'));
     
     const arrayProductos=[];
     for(const obj of carritoRecuperado){
-        arrayProductos.push(new Producto(obj.id, obj.nombre, obj.descripcion, obj.precio, obj.stock, obj.disponibilidad, obj.imagen) )
+        arrayProductos.push(new Producto(obj.id, obj.nombre, obj.descripcion, obj.precio, obj.stock, obj.disponibilidad, obj.imagen, obj.cantidad) )
     }
     let carritoDeStorage= arrayProductos
     console.log(carritoDeStorage);
     return carritoDeStorage;
-
+    }
 }
+
 
 // Finalizar la compra 
 
 let botonFinalizar = document.getElementById('finalizar')
 botonFinalizar.addEventListener('click', finalizarCompra)
 
-function finalizarCompra(){
-    window.location="opcion1.html";    
+function finalizarCompra(e){
+    e.preventDefault();
+    if(carritoDeCompras.length === 0){
 
+        Swal.fire({
+            icon: "error",
+            title: "No hay nada cargado en el carrito",
+            timer: 1500,
+            background: "linear-gradient(red, pink, white)",
+        });
+
+    }else{
+        pagar();
+        //window.location="opcion1.html"; 
+    }
+       
 }
 
+// Pagar la compra con Mercado Pago
+
+async function pagar() {
+    let carritoDeStorage = getCarrito();
+
+    const productsToMP = carritoDeStorage.map((element) => {
+      let nuevoElemento = {
+        title: element.nombre,
+        description: element.descripcion,
+        picture_url: element.imagen,
+        category_id: element.id,
+        quantity: Number(element.cantidad),
+        currency_id: "ARS",
+        unit_price: Number(element.precio),
+      };
+      return nuevoElemento;
+    });
+    console.log(productsToMP)
+    const response = await fetch(
+      "https://api.mercadopago.com/checkout/preferences",
+      {
+        method: "POST",
+        headers: {
+          Authorization:
+            "Bearer TEST-8806153257953965-090411-2fb58d8a74de65fce5a1138fdf9c7a86-1191985114",
+        },
+        body: JSON.stringify({
+          items: productsToMP,
+        }),
+      }
+    );
+    console.warn(response)
+    const data = await response.json();
+    console.log(data)
+    window.open(data.init_point, "_blank");
+  }
 
 
 
-// ` comillas invertidas para concatenar string, sin usar el + 
-// += para que vaya agregando los usuarios y no se quede solo en el primero
+
+
 
 
 

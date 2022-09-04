@@ -1,7 +1,7 @@
 // Construccion de productos
 
 class Producto {
-    constructor(id, nombre, descripcion, precio, stock, disponibilidad, imagen) {
+    constructor(id, nombre, descripcion, precio, stock, disponibilidad, imagen, cantidad) {
         this.id = id;
         this.nombre = nombre;
         this.descripcion=descripcion;
@@ -9,6 +9,7 @@ class Producto {
         this.stock = parseInt(stock);
         this.disponibilidad = disponibilidad;
         this.imagen= imagen;
+        this.cantidad= parseInt(cantidad);
     }
     sumarIvayEnvio() {
         this.precio = Math.round(this.precio * 1.21 * 1.20);

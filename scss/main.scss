@@ -5,8 +5,9 @@
 
 @import './header';
 @import './footer';
-@import './comprar';
-@import './registrar';
+@import './comprar1';
+@import './opcion2';
+@import './novedades';
 
 
 .galeriaFotos{
@@ -72,6 +73,13 @@ img:hover{
 
 .comprar{
     position: absolute;
+}
+
+.fetch{
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: xx-large;
+    display: grid;
+    place-items: center;
 }
 
 

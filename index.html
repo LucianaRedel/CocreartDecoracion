@@ -23,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cookie&display=swap" rel="stylesheet">
     <link rel="shorcut icon" href="./img/logo.jpeg">
     <link rel="stylesheet" href="./css/style.css">
-    <!-- <script src="./js/main.js"> </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Index / Cocreart </title>
 </head>
 
@@ -31,10 +31,10 @@
 
     <header>
         <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">   
+            <div class="container-fluid">
                 <a href="./index.html"> <img src="./img/IMG_7678.jpg" class="img-thumbnail" width="250" height="350"
                         alt="logo"> </a>
-                <a class="navbar-brand"> Decoupage sobre madera y vidrio</a>       
+                <a class="navbar-brand"> Decoupage sobre madera y vidrio</a>
                 <a class="navbar-brand"> Souveniers </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false"
@@ -47,9 +47,9 @@
                             <a class="nav-link" aria-current="page" href="./opcion1.html">Comprar</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Novedades</a>
+                            <a class="nav-link" href="./novedades.html">Novedades y Contacto</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
                                 aria-expanded="false">
                                 Ocasiones especiales
@@ -62,19 +62,19 @@
                                 <li><a class="dropdown-item" href="#">Día del niño</a></li>
                                 <li><a class="dropdown-item" href="#">Día del amigo</a></li>
                             </ul>
-                        </li>
+                        </li> -->
                         <!-- <li class="nav-item dropdown"> -->
-                            <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" -->
-                                <!-- aria-expanded="false"> -->
-                                <!-- Productos -->
-                            <!-- </a> -->
-                            <!-- <ul class="dropdown-menu"> -->
-                                <!-- <li><a class="dropdown-item" href="#">Jabones decorados</a></li> -->
-                                <!-- <li><a class="dropdown-item" href="#">Cajas de té y bandejas</a></li> -->
-                                <!-- <li><a class="dropdown-item" href="#">Flores para decoración</a></li> -->
-                                <!-- <li><a class="dropdown-item" href="#">Servilleteros y porta velas</a></li> -->
-                                <!-- <li><a class="dropdown-item" href="#">Frascos y botellas decorados</a></li> -->
-                            <!-- </ul> -->
+                        <!-- <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" -->
+                        <!-- aria-expanded="false"> -->
+                        <!-- Productos -->
+                        <!-- </a> -->
+                        <!-- <ul class="dropdown-menu"> -->
+                        <!-- <li><a class="dropdown-item" href="#">Jabones decorados</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Cajas de té y bandejas</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Flores para decoración</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Servilleteros y porta velas</a></li> -->
+                        <!-- <li><a class="dropdown-item" href="#">Frascos y botellas decorados</a></li> -->
+                        <!-- </ul> -->
                         <!-- </li> -->
                     </ul>
                 </div>
@@ -92,22 +92,22 @@
 
         <div class="container">
             <section class="galeriaFotos">
-                <img src="./img/flores blancas.jpeg"
-                    class="rounded mx-auto d-block" alt="Flores" height="500px" width="300px">
-                <img src="./img/porta velas.jpeg"
-                    class="rounded mx-auto d-block" alt="Porta velas" height="500px" width="300px">
-                <img src="./img/frascos frida.jpeg"
-                    class="rounded mx-auto d-block" alt="Frascos" height="500px" width="300px">
-                <img src="./img/bandeja azul rectangular.jpeg"
-                    class="rounded mx-auto d-block" alt="Bandeja" height="500px" width="300px">
-                <img src="./img/jabones dibujos verdes.jpeg"
-                    class="rounded mx-auto d-block" alt="Jabones" height="500px" width="300px">
-                <img src="./img/caja blanca con dos frascos.jpeg"
-                    class="rounded mx-auto d-block" alt="Caja" height="500px" width="300px">
-                <img src="./img/caja de guardado negra.jpeg"
-                    class="rounded mx-auto d-block" alt="Caja dorada" height="500px" width="300px">
-                <img src="./img/caja de te blanca grande.jpeg"
-                    class="rounded mx-auto d-block" alt="Caja de te" height="500px" width="300px">
+                <img src="./img/flores blancas.jpeg" class="rounded mx-auto d-block" alt="Flores" height="500px"
+                    width="300px">
+                <img src="./img/porta velas.jpeg" class="rounded mx-auto d-block" alt="Porta velas" height="500px"
+                    width="300px">
+                <img src="./img/frascos frida.jpeg" class="rounded mx-auto d-block" alt="Frascos" height="500px"
+                    width="300px">
+                <img src="./img/bandeja azul rectangular.jpeg" class="rounded mx-auto d-block" alt="Bandeja"
+                    height="500px" width="300px">
+                <img src="./img/jabones dibujos verdes.jpeg" class="rounded mx-auto d-block" alt="Jabones"
+                    height="500px" width="300px">
+                <img src="./img/caja blanca con dos frascos.jpeg" class="rounded mx-auto d-block" alt="Caja"
+                    height="500px" width="300px">
+                <img src="./img/caja de guardado negra.jpeg" class="rounded mx-auto d-block" alt="Caja dorada"
+                    height="500px" width="300px">
+                <img src="./img/caja de te blanca grande.jpeg" class="rounded mx-auto d-block" alt="Caja de te"
+                    height="500px" width="300px">
             </section>
         </div>
 
@@ -143,6 +143,15 @@
             </section>
 
         </div>
+        <section class="fetch">
+            <div>
+                <button type="button" id="btnPaises" class="btn btn-primary"> Donde estamos? </button>
+            </div>
+
+            <div id="Argentina"> 
+
+            </div>
+        </section>
 
 
     </main>
@@ -175,6 +184,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/index.js"> </script>
 </body>
 
 </html>
