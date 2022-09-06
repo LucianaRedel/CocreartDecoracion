@@ -1,18 +1,15 @@
 
 // Para cargar una funcion cuando se carga el HTML que actualice el carrito de compras
 
-// document.addEventListener('DOMContentLoaded', ()=>{
-//      mostrarCarrito() || [];   
-// })
+document.addEventListener('DOMContentLoaded', ()=>{
+      cargarCarritoLS() || [];   
+})
 
 // Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
 let carritoDeCompras = []
 
 let carritoDeStorage = getCarrito();
-
-console.log(carritoDeStorage);
-console.log(carritoDeCompras);
 
 
 // Variables globales a utilizar 
@@ -74,10 +71,14 @@ function crearItems(array){
 function agregarCarrito(id){
     let existeItem=carritoDeCompras.find(item=> item.id === id)
     if(existeItem){
-        existeItem.cantidad = existeItem.cantidad + 1
-        existeItem.stock = existeItem.stock--
-        document.getElementById(`cant${existeItem.id}`).innerHTML = `<p id="cant${existeItem.id}">Cantidad: ${existeItem.cantidad}</p>`
-        actualizarCarrito()
+        if(existeItem.stock === 0){
+            alert('No hay stock')
+        }else{
+            existeItem.cantidad = existeItem.cantidad + 1
+            existeItem.stock = existeItem.stock--
+            document.getElementById(`cant${existeItem.id}`).innerHTML = `<p id="cant${existeItem.id}">Cantidad: ${existeItem.cantidad}</p>`
+            actualizarCarrito()
+        }       
     }
     else{
         let productoElegido=productos.find(item=> item.id === id)
@@ -130,6 +131,14 @@ function actualizarCarrito(){
     setCarrito();
 }
 
+
+function actualizarCarritoStorage(){
+    contadorCarrito.innerText= carritoDeStorage.reduce((acc,producto)=> acc + producto.cantidad, 0)
+    precioTotal.innerHTML= carritoDeStorage.reduce((acc,producto)=> acc + (producto.precio * producto.cantidad), 0)
+
+    setCarrito();
+}
+
 // Guardar el carrito de compras en local storage 
 
 function setCarrito(){
@@ -156,6 +165,42 @@ function getCarrito(){
     console.log(carritoDeStorage);
     return carritoDeStorage;
     }
+}
+
+// Cargar el carrito cargado en local storage cuando se vuelve a cargar la pagina, 
+
+function cargarCarritoLS(){
+    let carritoDeStorage = getCarrito();
+    carritoDeStorage.forEach(function(item){
+        let div=document.createElement('div')
+        div.setAttribute('class', 'productoEnCarrito')
+        div.innerHTML=`<p>${item.nombre}</p>
+                   <p id="cant${item.id}">Cantidad:${item.cantidad}</p>
+                   <p>Precio unitario: $${item.precio}</p>
+                   <button class="boton-eliminar" id="eliminar${item.id}">
+                   <i class="fas fa-trash-alt"></i>
+                   </button>
+                   `
+    contenedorCarrito.appendChild(div)
+
+    actualizarCarritoStorage();
+
+
+    let btnEliminar=document.getElementById(`eliminar${item.id}`)
+    btnEliminar.addEventListener('click', ()=>{
+        if(item.cantidad === 1){
+            carritoDeStorage=carritoDeStorage.filter(producto => producto.id !== item.id)
+            btnEliminar.parentElement.remove() 
+            actualizarCarritoStorage()
+        }
+        else{
+            item.cantidad = item.cantidad - 1
+            document.getElementById(`cant${item.id}`).innerHTML=`<p id="cant${item.id}">Cantidad: ${item.cantidad}</p>`
+            actualizarCarritoStorage()
+        }
+    })
+})
+ 
 }
 
 
@@ -218,17 +263,3 @@ async function pagar() {
     console.log(data)
     window.open(data.init_point, "_blank");
   }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

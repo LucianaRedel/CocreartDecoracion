@@ -20,7 +20,7 @@ class Producto {
 
 const productos = [];
 
-productos.push(new Producto(1, 'Flores', 'Flores para decoración, ideales para difusores ambientales', 300, 10, 'Entrega inmediata', './img/flores blancas.jpeg'));
+productos.push(new Producto(1, 'Flores', 'Flores para decoración, ideales para difusores ambientales', 300, 1, 'Entrega inmediata', './img/flores blancas.jpeg'));
 productos.push(new Producto(2, 'Flores', 'Flores para decoración arpillera, ideales para frascos', 400, 10, 'Entrega inmediata', './img/flores arpillera.jpeg'));
 productos.push(new Producto(3, 'Flores', 'Flores para decoración tela, especialmente pensadas para floreros', 590, 10, 'Entrega inmediata', './img/flores arpillera roja blanca negra.jpeg'));
 productos.push(new Producto(4, 'Flores', 'Flores para decoración tela, color negro', 590, 10, 'Entrega inmediata', './img/flores decoracion negras.jpeg'));
