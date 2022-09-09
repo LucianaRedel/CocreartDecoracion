@@ -211,7 +211,7 @@ botonFinalizar.addEventListener('click', finalizarCompra)
 
 function finalizarCompra(e){
     e.preventDefault();
-    if(carritoDeCompras.length === 0){
+    if(carritoDeCompras.length === 0) {
 
         Swal.fire({
             icon: "error",
@@ -220,7 +220,8 @@ function finalizarCompra(e){
             background: "linear-gradient(red, pink, white)",
         });
 
-    }else{
+    }
+    else{
         pagar();
         //window.location="opcion1.html"; 
     }
