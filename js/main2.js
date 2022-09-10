@@ -7,9 +7,19 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
 // Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
-let carritoDeCompras = []
+let carritoDeCompras = getCarrito();
+console.log(carritoDeCompras)
 
 let carritoDeStorage = getCarrito();
+console.log(carritoDeStorage)
+
+// Vaciar carrito 
+
+let btnVaciar=document.getElementById('vaciar')
+    btnVaciar.addEventListener('click', ()=>{
+        localStorage.clear();
+        location.reload();
+    })
 
 
 // Variables globales a utilizar 
@@ -136,7 +146,7 @@ function actualizarCarritoStorage(){
     contadorCarrito.innerText= carritoDeStorage.reduce((acc,producto)=> acc + producto.cantidad, 0)
     precioTotal.innerHTML= carritoDeStorage.reduce((acc,producto)=> acc + (producto.precio * producto.cantidad), 0)
 
-    setCarrito();
+     setCarrito();
 }
 
 // Guardar el carrito de compras en local storage 
@@ -170,38 +180,37 @@ function getCarrito(){
 // Cargar el carrito cargado en local storage cuando se vuelve a cargar la pagina, 
 
 function cargarCarritoLS(){
-    let carritoDeStorage = getCarrito();
+   let carritoDeStorage = getCarrito();
     carritoDeStorage.forEach(function(item){
         let div=document.createElement('div')
-        div.setAttribute('class', 'productoEnCarrito')
-        div.innerHTML=`<p>${item.nombre}</p>
-                   <p id="cant${item.id}">Cantidad:${item.cantidad}</p>
-                   <p>Precio unitario: $${item.precio}</p>
-                   <button class="boton-eliminar" id="eliminar${item.id}">
-                   <i class="fas fa-trash-alt"></i>
-                   </button>
-                   `
+         div.setAttribute('class', 'productoEnCarrito')
+         div.innerHTML=`<p>${item.nombre}</p>
+                    <p id="cant${item.id}">Cantidad:${item.cantidad}</p>
+                    <p>Precio unitario: $${item.precio}</p>
+                    <button class="boton-eliminar" id="eliminar${item.id}">
+                    <i class="fas fa-trash-alt"></i>
+                    </button>
+                    `
     contenedorCarrito.appendChild(div)
 
     actualizarCarritoStorage();
 
-
     let btnEliminar=document.getElementById(`eliminar${item.id}`)
-    btnEliminar.addEventListener('click', ()=>{
-        if(item.cantidad === 1){
-            carritoDeStorage=carritoDeStorage.filter(producto => producto.id !== item.id)
-            btnEliminar.parentElement.remove() 
-            actualizarCarritoStorage()
-        }
-        else{
-            item.cantidad = item.cantidad - 1
-            document.getElementById(`cant${item.id}`).innerHTML=`<p id="cant${item.id}">Cantidad: ${item.cantidad}</p>`
-            actualizarCarritoStorage()
-        }
-    })
-})
+     btnEliminar.addEventListener('click', ()=>{
+         if(item.cantidad === 1){
+             carritoDeStorage=carritoDeStorage.filter(producto => producto.id !== item.id)
+             btnEliminar.parentElement.remove() 
+             actualizarCarritoStorage()
+         }
+         else{
+             item.cantidad = item.cantidad - 1
+             document.getElementById(`cant${item.id}`).innerHTML=`<p id="cant${item.id}">Cantidad: ${item.cantidad}</p>`
+             actualizarCarritoStorage()
+         }
+     })
+ })
  
-}
+ }
 
 
 // Finalizar la compra 
@@ -228,12 +237,22 @@ function finalizarCompra(e){
        
 }
 
+
+// Guardar el carrito de compras en local storage 
+
+function guardarCompraFinal(){
+    localStorage.setItem('compraFinal', JSON.stringify(carritoDeCompras));
+}
+
 // Pagar la compra con Mercado Pago
 
 async function pagar() {
-    let carritoDeStorage = getCarrito();
 
-    const productsToMP = carritoDeStorage.map((element) => {
+    let carritoDeCompras = setCarrito();
+
+    guardarCompraFinal();
+
+    const productsToMP = carritoDeCompras.map((element) => {
       let nuevoElemento = {
         title: element.nombre,
         description: element.descripcion,

@@ -113,6 +113,10 @@ ul {
   font-size: xx-large;
   font-weight: bold; }
 
+.modal-footer {
+  display: grid;
+  place-content: justify; }
+
 .registrarUsuario {
   display: grid;
   justify-items: center;
