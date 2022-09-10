@@ -1,5 +1,5 @@
 
-let botonEnviar = document.getElementById('mensaje')
+let botonEnviar = document.getElementById('mensajeEnviado')
 botonEnviar.addEventListener('click', ()=>{
 
     Swal.fire({

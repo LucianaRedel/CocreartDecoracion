@@ -191,7 +191,7 @@ function Ingresar(){
    
 }
 
-
+/*
 // Finalizar la compra, confirmar los datos de envio y del usuario
 
 let mostrarFinalizar= document.getElementById('botonFinalizar')
@@ -252,3 +252,4 @@ botonPagar.addEventListener('click', pagarCompra)
 function pagarCompra (){
     window.location='https://www.mercadopago.com.ar'
 }
+*/
