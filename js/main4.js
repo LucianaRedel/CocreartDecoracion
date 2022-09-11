@@ -1,30 +1,19 @@
 
-// Para cargar una funcion cuando se carga el HTML que actualice el carrito de compras
-
-document.addEventListener('DOMContentLoaded', ()=>{
-    cargarCarritoLS() || [];   
-})
-
 
 // Desarrollo de carrito de compras segun lo visto en la clase con Emiliano, 12 Agosto 2022
 
-//let carritoDeCompras = []
 
-let carritoDeCompras = getCarrito();
+let carritoDeCompras = [];
 
-let carritoDeStorage = getCarrito();
 
-console.log(carritoDeStorage);
-console.log(carritoDeCompras);
-
-// Vaciar carrito
+// Vaciar el carrito
 
 let btnVaciar=document.getElementById('vaciar')
   btnVaciar.addEventListener('click', ()=>{
       localStorage.clear();
       location.reload();
   })
-
+      
 
 // Variables globales a utilizar 
 
@@ -112,6 +101,8 @@ function mostrarCarrito(productoElegido){
                  <p>Precio unitario: $${productoElegido.precio}</p>
                  <button class="boton-eliminar" id="eliminar${productoElegido.id}">
                  <i class="fas fa-trash-alt"></i>
+                 <button class="boton-agregar" id="agregar${productoElegido.id}">
+                 <i class="fa-solid fa-cart-plus"></i>
                  </button>
                  `
   contenedorCarrito.appendChild(div)
@@ -130,6 +121,13 @@ function mostrarCarrito(productoElegido){
       }
   })
 
+  let btnAgregar=document.getElementById(`agregar${productoElegido.id}`)
+  btnAgregar.addEventListener('click', ()=>{
+          productoElegido.cantidad = productoElegido.cantidad + 1
+          document.getElementById(`cant${productoElegido.id}`).innerHTML=`<p id="cant${productoElegido.id}">Cantidad: ${productoElegido.cantidad}</p>`
+          actualizarCarrito()
+      })
+
 }
 
 // Actualizar el carrito de compras con cantidad y total
@@ -137,13 +135,6 @@ function mostrarCarrito(productoElegido){
 function actualizarCarrito(){
   contadorCarrito.innerText= carritoDeCompras.reduce((acc,item)=> acc + item.cantidad, 0)
   precioTotal.innerHTML= carritoDeCompras.reduce((acc,item)=> acc + (item.precio * item.cantidad), 0)
-
-  setCarrito();
-}
-
-function actualizarCarritoStorage(){
-  contadorCarrito.innerText= carritoDeStorage.reduce((acc,producto)=> acc + producto.cantidad, 0)
-  precioTotal.innerHTML= carritoDeStorage.reduce((acc,producto)=> acc + (producto.precio * producto.cantidad), 0)
 
   setCarrito();
 }
@@ -159,8 +150,8 @@ function setCarrito(){
 
 function getCarrito(){
   if(JSON.parse(localStorage.getItem('carritoGuardado')===null)){
-      let carritoDeStorage=[];
-      return carritoDeStorage
+      let carritoDeCompras=[];
+      return carritoDeCompras
   }
   else{
 
@@ -170,46 +161,10 @@ function getCarrito(){
   for(const obj of carritoRecuperado){
       arrayProductos.push(new Producto(obj.id, obj.nombre, obj.descripcion, obj.precio, obj.stock, obj.disponibilidad, obj.imagen, obj.cantidad) )
   }
-  let carritoDeStorage= arrayProductos
-  console.log(carritoDeStorage);
-  return carritoDeStorage;
+  let carritoDeCompras= arrayProductos
+  console.log(carritoDeCompras);
+  return carritoDeCompras;
   }
-}
-
-// Cargar el carrito cargado en local storage cuando se vuelve a cargar la pagina,
-
-function cargarCarritoLS(){
-  let carritoDeStorage = getCarrito();
-  carritoDeStorage.forEach(function(item){
-      let div=document.createElement('div')
-      div.setAttribute('class', 'productoEnCarrito')
-      div.innerHTML=`<p>${item.nombre}</p>
-                 <p id="cant${item.id}">Cantidad:${item.cantidad}</p>
-                 <p>Precio unitario: $${item.precio}</p>
-                 <button class="boton-eliminar" id="eliminar${item.id}">
-                 <i class="fas fa-trash-alt"></i>
-                 </button>
-                 `
-  contenedorCarrito.appendChild(div)
-
-  actualizarCarritoStorage();
-
-
-  let btnEliminar=document.getElementById(`eliminar${item.id}`)
-  btnEliminar.addEventListener('click', ()=>{
-      if(item.cantidad === 1){
-          carritoDeStorage=carritoDeStorage.filter(producto => producto.id !== item.id)
-          btnEliminar.parentElement.remove() 
-          actualizarCarritoStorage()
-      }
-      else{
-          item.cantidad = item.cantidad - 1
-          document.getElementById(`cant${item.id}`).innerHTML=`<p id="cant${item.id}">Cantidad: ${item.cantidad}</p>`
-          actualizarCarritoStorage()
-      }
-  })
-})
-
 }
 
 // Guardar el carrito de compras final en local storage 
@@ -236,7 +191,6 @@ function finalizarCompra(e){
 
   }else{
       pagar();
-      //window.location="opcion1.html"; 
   }
      
 }
@@ -245,11 +199,11 @@ function finalizarCompra(e){
 
 async function pagar() {
 
-  let carritoDeStorage = getCarrito();
+  let carritoDeCompras = getCarrito();
 
   guardarCompraFinal();
 
-  const productsToMP = carritoDeStorage.map((element) => {
+  const productsToMP = carritoDeCompras.map((element) => {
     let nuevoElemento = {
       title: element.nombre,
       description: element.descripcion,
@@ -280,4 +234,3 @@ async function pagar() {
   console.log(data)
   window.open(data.init_point, "_blank");
 }
-
